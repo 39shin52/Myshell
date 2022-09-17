@@ -31,17 +31,17 @@ func main() {
 			fmt.Println("exit status", status)
 		}
 		os.Exit(0)
+	}
 
-		// child process
-		cpath, err := exec.LookPath(os.Args[1])
-		if err != nil {
-			log.Fatalf("%s not found in $PATH.", os.Args[1])
-		}
+	// child process
+	cpath, err := exec.LookPath(os.Args[1])
+	if err != nil {
+		log.Fatalf("%s not found in $PATH.", os.Args[1])
+	}
 
-		args := os.Args[1:]
-		err = syscall.Exec(cpath, args, os.Environ())
-		if err != nil {
-			panic(err)
-		}
+	args := os.Args[1:]
+	err = syscall.Exec(cpath, args, os.Environ())
+	if err != nil {
+		panic(err)
 	}
 }
